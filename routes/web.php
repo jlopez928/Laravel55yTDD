@@ -37,10 +37,12 @@ Route::get('/usuarios/nuevo', function () {
 });
 
 // El ? en apodo significa que es opcional
-Route::get('/usuarios/{name}/{nickname?}', function ($name,$nickname = null) {
+Route::get('/saludo/{name}/{nickname?}', function ($name,$nickname = null) {
+    $name = ucfirst($name);
+
     if ($nickname){
         return "Bienvenido {$name}, tu apodo es {$nickname}";
     }else {
-        return "Bienvenido {$name}, no tienes apodo";
+        return "Bienvenido {$name}";
     }
 });
