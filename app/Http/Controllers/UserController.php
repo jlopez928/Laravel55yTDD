@@ -9,14 +9,20 @@ class UserController extends Controller
 
     //
     public function index() {
-        $users = [
-            'Joel',
-            'Ellie',
-            'Tess',
-            'Tommy',
-            'Bill',
-            '<script>alert("Clicker")</script>'
-        ];
+
+        // usuarios?empty
+        if (request()->has('empty')){
+            $users = [];
+        }else {
+            $users = [
+                'Joel',
+                'Ellie',
+                'Tess',
+                'Tommy',
+                'Bill',
+                '<script>alert("Clicker")</script>'
+            ];
+        }
 
         $title = 'Listado de Usuarios';
         
@@ -39,7 +45,7 @@ class UserController extends Controller
         ]);*/
         
         //Otra forma - Metodo With
-/*        return view('users')
+        /*return view('users')
                 ->with('users',$users)
                 ->with('title','Lista de Usuarios');*/
 
