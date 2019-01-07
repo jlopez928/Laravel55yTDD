@@ -12,7 +12,14 @@ class ProfessionSeeder extends Seeder
      */
     public function run()
     {
-        //
+        //**************Consultas SQL Manual        
+        //DB::insert('insert into professions (title) values ("Desarrollador back-end")');
+        //DB::insert('insert into professions (title) values (?)',['Desarrollador back-end']);
+        /*DB::insert('insert into professions (title) values (:title)',[
+            'title' => 'Desarrollador back-end'
+        ]);*/
+        
+        //***************Constructor de Consultas SQL de Laravel
         DB::table('professions')->insert([
             'title' => 'Desarrollador back-end',
         ]);
