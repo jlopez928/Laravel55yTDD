@@ -8,5 +8,11 @@ class Profession extends Model
 {
     //
 
+    //protected $table = 'my_professions';
+
+    //public $timestamps = false;
+
+    protected $fillable = ['title'];
+
     
 }
