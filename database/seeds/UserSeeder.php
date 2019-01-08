@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\User;
+use App\Profession;
 
 class UserSeeder extends Seeder
 {
@@ -12,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //**************Consultas SQL Manual        
+        //**************Consultas SQL Directamente       
         //$professions = DB::select('select id from professions where title = "Desarrollador back-end"');
         //$professions = DB::select('select id from professions where title = ?',['Desarrollador back-end']);
         //$professions = DB::select('select id from professions where title = ? limit 0,1',['Desarrollador back-end']);
@@ -28,22 +30,32 @@ class UserSeeder extends Seeder
         //$profession = DB::table('professions')->where('title','Desarrollador back-end')->first();
         //$profession = DB::table('professions')->where(['title' => 'Desarrollador back-end'])->first();
         
-        $professionId = DB::table('professions')
+        /*$professionId = DB::table('professions')
             //->where(['title' => 'Desarrollador back-end'])
             ->where('title','Desarrollador back-end')
-            ->value('id');
+            ->value('id');*/
 
         //dd($professions->first()->id);
-        dd($professionId);
+        //dd($professionId);
 
         //
-        DB::table('users')->insert([
+        /*DB::table('users')->insert([
             'name' => 'Jesus Lopez',
             'email' => 'jesuslopez@gmail.com',
             'password' => bcrypt('laravel'),
             //'profession_id' => $professions[0]->id,
             //'profession_id' => $profession->id,
-            'profession_id' => $professionId,
+            'profession_id' => $professionId
+        ]);*/
+
+        //***************Con Modelo Eloquent de Laravel
+        $professionId = Profession::where(['title' => 'Desarrollador back-end'])->value('id');
+
+        User::create([
+            'name' => 'Jesus Lopez',
+            'email' => 'jesuslopez@gmail.com',
+            'password' => bcrypt('laravel'),
+            'profession_id' => $professionId
         ]);
     }
 }
