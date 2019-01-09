@@ -37,6 +37,10 @@ class ProfessionSeeder extends Seeder
        Profession::create(['title' => 'Desarrollador back-end']);
        Profession::create(['title' => 'Desarrollador front-end']);
        Profession::create(['title' => 'Diseñador Web']);
+
+       //Creando 17 usuarios aleatorios
+       //factory(Profession::class)->times(17)->create();
+       factory(Profession::class, 17)->create();
         
     }
 }

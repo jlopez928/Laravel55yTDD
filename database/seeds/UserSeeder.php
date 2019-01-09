@@ -72,5 +72,13 @@ class UserSeeder extends Seeder
             'password' => bcrypt('laravel'),
             'profession_id' => null
         ]);
+
+        //Creando usuarios con factory
+        factory(User::class)->create([
+            'profession_id' => $professionId
+        ]);
+        
+        //Creando 10 usuarios aleatorios
+        factory(User::class, 10)->create();
     }
 }
