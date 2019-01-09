@@ -14,5 +14,9 @@ class Profession extends Model
 
     protected $fillable = ['title'];
 
+    //Relacion con el modelo User hasMany
+    public function users() {
+        return $this->hasMany(User::class);
+    }
     
 }

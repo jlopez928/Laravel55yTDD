@@ -37,7 +37,17 @@ class User extends Authenticatable
     }
 
     public function isAdmin(){
-        return $this->email === 'jesuslopez@gmail.com';
+        //return $this->email === 'jesuslopez@gmail.com';
+        //se modifico el seeder User
+        return $this->is_admin;
+    }
+
+    //Relacion con el modelo Profession hasOne
+    public function profession() {
+        //Para buscar profession_id como clave foranea en el modelo User
+        return $this->belongsTo(Profession::class);
+        //En caso de tener otro nombre se pasa como segundo argumento
+        //return $this->belongsTo(Profession::class,'id_profesion');
     }
 
 }
