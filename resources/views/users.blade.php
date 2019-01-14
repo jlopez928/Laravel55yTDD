@@ -12,6 +12,15 @@
 
     <hr>
     {{-- Metodo Condicional If --}}
+    <ul>
+        @forelse ($users as $user)
+            <li>{{ $user->name }}, ({{ $user->email }})</li>
+        @empty
+            <li>No hay usuarios registrados</li>
+        @endforelse
+    </ul>
+
+    {{-- Metodo Condicional If 
     @if(!empty($users))
         <ul>
             @foreach ($users as $user) 
@@ -20,7 +29,7 @@
         </ul>
     @else
         <p>No hay usuarios Registrados</p>
-    @endif 
+    @endif --}}
     
     {{-- Metodo Condicional Empty 
     @empty($users)
