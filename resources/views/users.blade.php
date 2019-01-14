@@ -15,14 +15,14 @@
     @if(!empty($users))
         <ul>
             @foreach ($users as $user) 
-                <li>{{ $user }}</li>
+                <li>{{ $user->name }}, ({{ $user->email }})</li>
             @endforeach
         </ul>
     @else
         <p>No hay usuarios Registrados</p>
     @endif 
     
-    {{-- Metodo Condicional Empty --}}
+    {{-- Metodo Condicional Empty 
     @empty($users)
         <p>No hay usuarios Registrados</p>    
     @else
@@ -31,9 +31,9 @@
                 <li>{{ $user }}</li>
             @endforeach
         </ul>    
-    @endempty 
+    @endempty --}}
     
-    {{-- Metodo Condicional Unless --}}
+    {{-- Metodo Condicional Unless 
     @unless(empty($users))
         <ul>
             @foreach ($users as $user) 
@@ -42,7 +42,7 @@
         </ul> 
     @else
         <p>No hay usuarios Registrados</p>       
-    @endunless
+    @endunless --}}
 
 </body>
 </html>

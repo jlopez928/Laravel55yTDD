@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\User;
+
 
 class UserController extends Controller
 {
@@ -11,7 +14,7 @@ class UserController extends Controller
     public function index() {
 
         // usuarios?empty
-        if (request()->has('empty')){
+        /*if (request()->has('empty')){
             $users = [];
         }else {
             $users = [
@@ -22,7 +25,17 @@ class UserController extends Controller
                 'Bill',
                 '<script>alert("Clicker")</script>'
             ];
-        }
+        }*/
+
+        //*************Constructor de Consultas SQL de Laravel
+        //$users = DB::table('users')->get();
+
+        //***************Con Modelo Eloquent de Laravel
+        $users = User::all();
+
+
+
+        //dd($users);
 
         $title = 'Listado de Usuarios';
         

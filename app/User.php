@@ -9,6 +9,9 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    //En caso de no usar la convencion, colocar el nombre de la tabla
+    //protected $table = 'nombre_tabla';
+
     /**
      * The attributes that are mass assignable.
      *
