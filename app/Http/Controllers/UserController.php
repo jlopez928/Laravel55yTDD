@@ -94,12 +94,18 @@ class UserController extends Controller
     
     //
     public function create() {
-        return "Crear usuario nuevo";
+        //return "Crear usuario nuevo";
+
+        return view('users.create');
     }
 
     //
     public function detalle() {
         return 'Mostrando detalle del usuario: ' .$_GET['id'];
+    }
+
+    public function store() {
+        return "Procesando informacion...";
     }
 
 }

@@ -37,3 +37,7 @@ Route::get('/usuarios/nuevo', 'UserController@create')
 
 // El ? en apodo significa que es opcional
 Route::get('/saludo/{name}/{nickname?}', 'WelcomeUserController@index');
+
+
+//Route::post('/usuarios/crear', 'UserController@store');
+Route::post('/usuarios', 'UserController@store');
