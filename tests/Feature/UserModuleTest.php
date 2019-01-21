@@ -80,5 +80,33 @@ class UserModuleTest extends TestCase
         ->assertSee('Página no encontrada');
     }
 
+        /** @test */
+        function it_creates_a_new_user()
+        {
+            
+            $this->withoutExceptionHandling();
+            
+            $this->post('/usuarios/', [
+                'name' => 'Jesus Lopez',
+                'email' => 'jesuslopez@gmail.com',
+                'password' => '123456'
+            //])->assertRedirect('usuarios');
+            ])->assertRedirect(route('users'));
+            //->assertSee('Procesando informacion...');
+
+            //Para hacer pruebas directamente en la BD
+            /*$this->assertDatabaseHas('users', [
+                'name' => 'Jesus Lopez',
+                'email' => 'jesuslopez@gmail.com'
+            ]);*/
+
+            //Para hacer pruebas directamente a la BD incluyendo el password
+            $this->assertCredentials([
+                'name' => 'Jesus Lopez',
+                'email' => 'jesuslopez@gmail.com',
+                'password' => '123456'
+            ]);
+        }
+
 
 }

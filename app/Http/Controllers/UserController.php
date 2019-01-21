@@ -105,7 +105,27 @@ class UserController extends Controller
     }
 
     public function store() {
-        return "Procesando informacion...";
+
+        $data = request()->all();
+
+        //dd($data);
+
+        User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password'])
+        ]);
+        
+        /*User::create([
+            'name' => 'Jesus Lopez',
+            'email' => 'jesuslopez@gmail.com',
+            'password' => bcrypt(123456)
+        ]);*/
+
+        //return "Procesando informacion...";
+        //return redirect('usuarios');
+        return redirect()->route('users');
+
     }
 
 }
