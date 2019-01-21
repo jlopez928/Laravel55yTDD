@@ -27,8 +27,8 @@ Route::get('/usuarios', 'UserController@index')
 Route::get('/usuarios/detalles', 'UserController@detalle');
 
 //Route::get('/usuarios/detalles/{id}', 'UserController@show')->where('id','[0-9]+'); // Expresion regular para que solo acepte numeros como id
-Route::get('/usuarios/{id}', 'UserController@show')
-    ->where('id','[0-9]+') // Expresion regular para que solo acepte numeros como id
+Route::get('/usuarios/{user}', 'UserController@show')
+    ->where('user','[0-9]+') // Expresion regular para que solo acepte numeros como id
     ->name('users.show');
 
 //Route::get('/usuarios/nuevo', 'UserController@create');

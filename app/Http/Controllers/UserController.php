@@ -65,7 +65,7 @@ class UserController extends Controller
     }
 
     //
-    public function show($id) {
+    public function show(User $user) {
         //return 'Mostrando detalle del usuario: ' .$id;
         //return "Mostrando detalle del usuario: {$id}";
 
@@ -85,7 +85,9 @@ class UserController extends Controller
         //Para validar si existe usuario con el metodo FindOrFail
         //Automaticamente busca la vista 404 definida
 
-        $user = User::findOrFail($id);
+        //$user = User::findOrFail($id);
+
+        //dd($user);
 
         return view('users.show', compact('user'));
     }
