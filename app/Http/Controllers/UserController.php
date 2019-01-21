@@ -69,9 +69,23 @@ class UserController extends Controller
         //return 'Mostrando detalle del usuario: ' .$id;
         //return "Mostrando detalle del usuario: {$id}";
 
-        $user = User::find($id);
+        //Para validar si existe usuario con el metodo Find
+        /*$user = User::find($id);
 
         //dd($user);
+
+        if($user == null) {
+            
+            //return view('errors.404');
+            
+            // Para poder enviar el status 404
+            return response()->view('errors.404',[],404);
+        }*/
+
+        //Para validar si existe usuario con el metodo FindOrFail
+        //Automaticamente busca la vista 404 definida
+
+        $user = User::findOrFail($id);
 
         return view('users.show', compact('user'));
     }
