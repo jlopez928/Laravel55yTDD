@@ -49,7 +49,7 @@ class UserController extends Controller
         /*dd(compact('users','title'));*/
 
         //Otra forma - Metodo Array Asociativo
-        return view('users', compact('users','title'));
+        return view('users.index', compact('users','title'));
 
         //Metodo With
         /*return view('users')->with([
@@ -67,7 +67,13 @@ class UserController extends Controller
     //
     public function show($id) {
         //return 'Mostrando detalle del usuario: ' .$id;
-        return "Mostrando detalle del usuario: {$id}";
+        //return "Mostrando detalle del usuario: {$id}";
+
+        $user = User::find($id);
+
+        //dd($user);
+
+        return view('users.show', compact('user'));
     }
     
     //
