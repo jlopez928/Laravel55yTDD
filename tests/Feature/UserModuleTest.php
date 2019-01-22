@@ -108,5 +108,25 @@ class UserModuleTest extends TestCase
             ]);
         }
 
+        /** @test */
+        function the_name_is_required() {
+
+            //$this->withoutExceptionHandling();
+
+            $this->from('usuarios/nuevo')->post('/usuarios/', [
+                'name' => '',
+                'email' => 'jesuslopez@gmail.com',
+                'password' => '123456'
+            ])
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors(['name' => 'El campo nombre es obligatorio']);
+
+            /*$this->assertDatabaseMissing('users', [
+                'email' => 'jesuslopez@gmail.com'
+            ]);*/
+
+            $this->assertEquals(0, User::count());
+            
+        }
 
 }
