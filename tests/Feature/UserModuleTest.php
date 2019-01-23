@@ -69,7 +69,7 @@ class UserModuleTest extends TestCase
     {
         $this->get('/usuarios/nuevo')
         ->assertStatus(200)
-        ->assertSee('Crear usuario nuevo');
+        ->assertSee('Crear Usuario');
     }
 
     /** @test */
@@ -120,6 +120,94 @@ class UserModuleTest extends TestCase
             ])
             ->assertRedirect(route('users.create'))
             ->assertSessionHasErrors(['name' => 'El campo nombre es obligatorio']);
+
+            /*$this->assertDatabaseMissing('users', [
+                'email' => 'jesuslopez@gmail.com'
+            ]);*/
+
+            $this->assertEquals(0, User::count());
+            
+        }
+        
+        /** @test */
+        function the_email_is_required() {
+
+            //$this->withoutExceptionHandling();
+
+            $this->from('usuarios/nuevo')->post('/usuarios/', [
+                'name' => 'Duilio',
+                'email' => '',
+                'password' => '123456'
+            ])
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors(['email']);
+
+            /*$this->assertDatabaseMissing('users', [
+                'email' => 'jesuslopez@gmail.com'
+            ]);*/
+
+            $this->assertEquals(0, User::count());
+            
+        }
+        
+        /** @test */
+        function the_email_must_be_valid() {
+
+            //$this->withoutExceptionHandling();
+
+            $this->from('usuarios/nuevo')->post('/usuarios/', [
+                'name' => 'Duilio',
+                'email' => 'correo-no-valido',
+                'password' => '123456'
+            ])
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors(['email']);
+
+            /*$this->assertDatabaseMissing('users', [
+                'email' => 'jesuslopez@gmail.com'
+            ]);*/
+
+            $this->assertEquals(0, User::count());
+            
+        }
+        
+        /** @test */
+        function the_email_must_be_unique() {
+
+            //$this->withoutExceptionHandling();
+
+            factory(User::class)->create([
+                'email' => 'duilio@gmail.com'
+            ]);
+
+            $this->from('usuarios/nuevo')->post('/usuarios/', [
+                'name' => 'Duilio',
+                'email' => 'duilio@gmail.com',
+                'password' => '123456'
+            ])
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors(['email']);
+
+            /*$this->assertDatabaseMissing('users', [
+                'email' => 'jesuslopez@gmail.com'
+            ]);*/
+
+            $this->assertEquals(1, User::count());
+            
+        }
+
+        /** @test */
+        function the_password_is_required() {
+
+            //$this->withoutExceptionHandling();
+
+            $this->from('usuarios/nuevo')->post('/usuarios/', [
+                'name' => 'Duilio',
+                'email' => 'duilio@gmail.com',
+                'password' => ''
+            ])
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors(['password']);
 
             /*$this->assertDatabaseMissing('users', [
                 'email' => 'jesuslopez@gmail.com'

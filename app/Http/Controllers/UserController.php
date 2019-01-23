@@ -107,10 +107,18 @@ class UserController extends Controller
     public function store() {
 
         $data = request()->validate([
-            'name' => 'required'
+            'name' => 'required',
+            //'email' => ['required','email'],
+            //parametros unique con : , el nombre de la tabla , el campo de la tabla
+            'email' => 'required|email|unique:users,email',
+            //'email' => '',
+            'password' => 'required',
         ], [
-            'name.required' => 'El campo nombre es obligatorio'
+            'name.required' => 'El campo nombre es obligatorio',
+            'email.required' => 'El campo email es obligatorio'
         ]);
+
+        //dd($data);
         
         //Validacion con Condicional
         /*$data = request()->all();
