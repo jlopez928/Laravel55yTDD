@@ -46,3 +46,6 @@ Route::post('/usuarios', 'UserController@store');
     ->name('users.edit');*/
 Route::get('/usuarios/{user}/editar', 'Usercontroller@edit')
     ->name('users.edit');
+
+Route::put('/usuarios/{user}', 'Usercontroller@update')
+    ->name('users.update');

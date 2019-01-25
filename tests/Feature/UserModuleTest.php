@@ -260,4 +260,34 @@ class UserModuleTest extends TestCase
             });
         }
 
+        /** @test */
+        function it_updates_a_user()
+        {
+            
+            $this->withoutExceptionHandling();
+
+            $user = factory(User::class)->create();
+            
+            $this->put("/usuarios/{$user->id}", [
+                'name' => 'Jesus Lopez',
+                'email' => 'jesuslopez@gmail.com',
+                'password' => '123456'
+            //])->assertRedirect('usuarios');
+            ])->assertRedirect("/usuarios/{$user->id}");
+            //->assertSee('Procesando informacion...');
+
+            //Para hacer pruebas directamente en la BD
+            /*$this->assertDatabaseHas('users', [
+                'name' => 'Jesus Lopez',
+                'email' => 'jesuslopez@gmail.com'
+            ]);*/
+
+            //Para hacer pruebas directamente a la BD incluyendo el password
+            $this->assertCredentials([
+                'name' => 'Jesus Lopez',
+                'email' => 'jesuslopez@gmail.com',
+                'password' => '123456'
+            ]);
+        }
+
 }

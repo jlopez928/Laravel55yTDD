@@ -157,4 +157,19 @@ class UserController extends Controller
 
     }
 
+    public function update(User $user) {
+
+       // $user->update($request()->all());
+
+       $data = request()->all();
+
+       $data['password'] = bcrypt($data['password']);
+
+       $user->update($data);
+        
+        //return redirect("usuarios/{$user->id}");
+        return redirect()->route('users.show', ['user' => $user]);
+
+    }
+
 }
