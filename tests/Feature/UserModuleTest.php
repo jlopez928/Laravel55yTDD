@@ -216,5 +216,43 @@ class UserModuleTest extends TestCase
             $this->assertEquals(0, User::count());
             
         }
+        
+        /** @test */
+        function the_password_is_over_six() {
+
+            //$this->withoutExceptionHandling();
+
+            $this->from('usuarios/nuevo')->post('/usuarios/', [
+                'name' => 'kkkkk',
+                'email' => '555@gmail.com',
+                'password' => '123456'
+            ])
+            ->assertRedirect(route('users.create'))
+            ->assertSessionHasErrors(['password']);
+
+            /*$this->assertDatabaseMissing('users', [
+                'email' => 'jesuslopez@gmail.com'
+            ]);*/
+
+            //$this->assertEquals(0, User::count());
+            
+        }
+
+
+        /** @test */
+        function it_loads_the_edit_user_page()
+        {
+
+            //$this->withoutExceptionHandling();
+
+            $user = factory(User::class)->create();
+
+            // usuarios/editar?id=5
+            //$this->get('/usuarios/editar', ['id' => $user-id])
+            $this->get("/usuarios/{$user->id}/editar")
+            ->assertStatus(200)
+            ->assertViewIs('users.edit')
+            ->assertSee('Editar usuario');
+        }
 
 }

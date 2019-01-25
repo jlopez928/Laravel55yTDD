@@ -112,10 +112,12 @@ class UserController extends Controller
             //parametros unique con : , el nombre de la tabla , el campo de la tabla
             'email' => 'required|email|unique:users,email',
             //'email' => '',
-            'password' => 'required',
+            'password' => 'required|min:6',
         ], [
             'name.required' => 'El campo nombre es obligatorio',
-            'email.required' => 'El campo email es obligatorio'
+            'email.required' => 'El campo email es obligatorio',
+            'password.required' => 'El campo password es obligatorio',
+            'password.min' => 'El campo password debe ser mayor a 6 digitos',
         ]);
 
         //dd($data);
@@ -146,6 +148,12 @@ class UserController extends Controller
         //return "Procesando informacion...";
         //return redirect('usuarios');
         return redirect()->route('users');
+
+    }
+
+    public function edit() {
+        
+        return view ('users.edit');
 
     }
 

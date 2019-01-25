@@ -32,10 +32,16 @@
 
           <label for="email">Correo Electronico:</label> <br>
           <input type="email" name="email" id="email" placeholder="pedro@example.com" value="{{ old('email') }}">
+          @if($errors->has('email'))
+            <p>{{ $errors->first('email') }}</p>
+          @endif
           <br><br>
 
           <label for="password">Contraseña:</label><br>
           <input type="password" name="password" id="password" placeholder="Mayor a 6 caracteres">
+          @if($errors->has('password'))
+            <p>{{ $errors->first('password') }}</p>
+          @endif
           <br><br>
 
         <button type="submit">Crear usuario</button>
