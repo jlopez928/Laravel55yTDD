@@ -41,3 +41,8 @@ Route::get('/saludo/{name}/{nickname?}', 'WelcomeUserController@index');
 
 //Route::post('/usuarios/crear', 'UserController@store');
 Route::post('/usuarios', 'UserController@store');
+
+/*Route::get('/usuarios/{id}/editar', 'Usercontroller@edit')
+    ->name('users.edit');*/
+Route::get('/usuarios/{user}/editar', 'Usercontroller@edit')
+    ->name('users.edit');
