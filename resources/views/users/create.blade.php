@@ -10,11 +10,11 @@
             <div class="alert alert-danger">
                 {{--  <p>Hay Errores!!</p> --}}
                 <p>Por favor corrige los errores debajo:</p>
-                 {{--  <ul>
+                   <ul>
                     @foreach ( $errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
-                </ul>   --}}
+                </ul>   
             </div>
         @endif
     
@@ -25,23 +25,23 @@
 
           <label for="name">Nombre:</label> <br>
           <input type="text" name="name" id="name" placeholder="Pedro Perez" value="{{ old('name') }}">
-          @if($errors->has('name'))
+          {{--@if($errors->has('name'))
             <p>{{ $errors->first('name') }}</p>
-          @endif
+          @endif--}}
           <br><br>
 
           <label for="email">Correo Electronico:</label> <br>
           <input type="email" name="email" id="email" placeholder="pedro@example.com" value="{{ old('email') }}">
-          @if($errors->has('email'))
+          {{--@if($errors->has('email'))
             <p>{{ $errors->first('email') }}</p>
-          @endif
+          @endif--}}
           <br><br>
 
           <label for="password">Contraseña:</label><br>
           <input type="password" name="password" id="password" placeholder="Mayor a 6 caracteres">
-          @if($errors->has('password'))
+          {{--@if($errors->has('password'))
             <p>{{ $errors->first('password') }}</p>
-          @endif
+          @endif--}}
           <br><br>
 
         <button type="submit">Crear usuario</button>

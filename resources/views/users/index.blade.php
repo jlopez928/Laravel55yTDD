@@ -20,7 +20,17 @@
                 {{--  <a href="{{ action('UserController@show',['id' => $user->id]) }}">Ver detalles</a>--}}
 
                 {{--  Con el Helper route()--}}
-                <a href="{{ route('users.show',['id' => $user->id]) }}">Ver detalles</a>
+                {{--<a href="{{ route('users.show',['id' => $user->id]) }}">Ver detalles</a> |
+                <a href="{{ route('users.edit',['id' => $user->id]) }}">Editar</a>--}}
+                
+                {{-- Pasando el modelo de Eloquent del usuario --}}
+                <a href="{{ route('users.show', $user) }}">Ver detalles</a> |
+                <a href="{{ route('users.edit', $user) }}">Editar</a> |
+                <form action="{{ route('users.destroy',$user) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit">Eliminar</button>
+                </form>
 
             </li>
         @empty
