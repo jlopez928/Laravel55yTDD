@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
@@ -167,14 +168,20 @@ class UserController extends Controller
 
        $data = request()->validate([
             'name'=> 'required',
-            'email'=> 'required|email|unique:users,email',
+            //'unique:users,email,'.$user->id se pasa el id como tercer argumento para excluir el correo del usuario
+            //'email'=> 'required|email|unique:users,email,'.$user->id,
+            'email' => [
+                'required', 
+                'email', 
+                Rule::unique('users','email')->ignore($user->id)
+            ],
             'password'=> '',
-       ],[
+       ]);/*,[
             'name.required' => 'El campo nombre es obligatorio',
             'email.required' => 'El campo email es obligatorio',
             'email.unique' => 'El email ya esta usado',
             'password.required' => 'El campo password es obligatorio',
-       ]);
+       ]);*/
 
        if ($data['password'] != null) {
             $data['password'] = bcrypt($data['password']);    
