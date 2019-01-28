@@ -168,13 +168,22 @@ class UserController extends Controller
        $data = request()->validate([
             'name'=> 'required',
             'email'=> 'required|email|unique:users,email',
-            'password'=> 'required',
+            'password'=> '',
        ],[
             'name.required' => 'El campo nombre es obligatorio',
+            'email.required' => 'El campo email es obligatorio',
+            'email.unique' => 'El email ya esta usado',
+            'password.required' => 'El campo password es obligatorio',
        ]);
 
-       $data['password'] = bcrypt($data['password']);
-
+       if ($data['password'] != null) {
+            $data['password'] = bcrypt($data['password']);    
+       } else {
+           unset($data['password']);
+       } 
+       
+       //$data['password'] = bcrypt($data['password']);    
+       
        $user->update($data);
         
         //return redirect("usuarios/{$user->id}");
