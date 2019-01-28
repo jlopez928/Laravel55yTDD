@@ -159,9 +159,19 @@ class UserController extends Controller
 
     public function update(User $user) {
 
+        //dd('Estoy editando');
+
        // $user->update($request()->all());
 
-       $data = request()->all();
+       //$data = request()->all();
+
+       $data = request()->validate([
+            'name'=> 'required',
+            'email'=> 'required|email|unique:users,email',
+            'password'=> 'required',
+       ],[
+            'name.required' => 'El campo nombre es obligatorio',
+       ]);
 
        $data['password'] = bcrypt($data['password']);
 
