@@ -31,9 +31,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.create') }}">Nuevo</a>
-                </li>
             </ul>
         </div>
     </nav>
@@ -42,10 +39,10 @@
 <!-- Begin page content -->
 <main role="main" class="container">
     <div class="row mt-3">
-        <div class="col-8">
+        <div class="col-9">
             @yield('content')
         </div>
-        <div class="col-4">
+        <div class="col-3">
             @section('sidebar')
                 <h2>Barra lateral</h2>
             @show
